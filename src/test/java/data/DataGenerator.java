@@ -15,27 +15,24 @@ public class DataGenerator {
     private static final Faker faker = new Faker(new Locale("ru"));
 
     public static String  generateDate(int days) {
-        // TODO: добавить логику для объявления переменной date и задания её значения, для генерации строки с датой
-        // Вы можете использовать класс LocalDate и его методы для получения и форматирования даты
+
         return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
-    public static String generateCity(String locale) {
-        // TODO: добавить логику для объявления переменной city и задания её значения, генерацию можно выполнить
-        // с помощью Faker, либо используя массив валидных городов и класс Random
+    public static String generateCity() {
+
         String city = faker.address().city();
         return city;
     }
 
 
-    public static String generateName(String locale) {
-        // TODO: добавить логику для объявления переменной name и задания её значения, для генерации можно
-        return  faker.name().username();
+    public static String generateName() {
+
+        return faker.name().lastName() + " " + faker.name().firstName();
     }
 
-    public static String generatePhone(String locale) {
-        // TODO: добавить логику для объявления переменной phone и задания её значения, для генерации можно
-        // использовать Faker
+    public static String generatePhone() {
+
         return faker.phoneNumber().phoneNumber();
     }
 
@@ -44,8 +41,7 @@ public class DataGenerator {
         }
 
         public static UserInfo generateUser(String locale) {
-            // TODO: добавить логику для создания пользователя user с использованием методов generateCity(locale),
-            // generateName(locale), generatePhone(locale)
+
             return new UserInfo(generateCity(),generateName(),generatePhone());
         }
 
