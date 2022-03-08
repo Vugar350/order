@@ -40,11 +40,13 @@ public class DeliveryTest {
         $("[data-test-id=date] [value]").sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
         $("[data-test-id=date] [value]").setValue(secondMeetingDate);
         $("[class='button__text']").click();
-        $("[data-test-id=replan-notification].notification__content").shouldBe(Condition.visible)
-                .shouldHave(exactText("У вас уже запланирована встреча на другую дату. Перепланировать?"));
-        $("[data-test-id=replan-notification] .button.button__text").click();
-        $("[data-test-id=replan-notification]").shouldBe(Condition.visible)
+        $("[data-test-id=replan-notification] .notification__content").shouldBe(Condition.visible)
+                .shouldHave(ownText("У вас уже запланирована встреча на другую дату. Перепланировать?"));
+        $("[data-test-id=replan-notification] .button").click();
+        $("[data-test-id=success-notification] .notification__content").shouldBe(Condition.visible)
                 .shouldHave(exactText("Встреча успешно запланирована на " + secondMeetingDate));
+
+
 
 
     }
